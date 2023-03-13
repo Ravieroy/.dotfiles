@@ -1,0 +1,581 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+#background = #282A2E
+background = #aa2F3437
+background-alt = #373B41
+foreground = #C5C8C6
+primary = #F0C674
+secondary = #8ABEB7
+alert = #A54242
+disabled = #707880
+pink = #f7768e
+orange = #ff9e64
+dark-orange = #e0af68
+green = #9ece6a
+teal = #73daca
+light-blue = #b4f9f8
+cyan = #2ac3de
+blue = #7dcfff
+blurple = #7aa2f7
+purple = #bb9af7
+light-purple = #c0caf5
+light-dark-purple = #a9b1d6
+dark-purple = #9aa5ce
+beige = #cfc9c2
+really-dark-purple = #565f89
+black = #414868
+volume-min = #a3be8c
+volume-med = #ebcb8b
+volume-max = #bf616a
+
+
+
+[bar/bar1]
+monitor = ${env:MONITOR:}
+width = 100%
+height = 26pt
+radius = 10
+offset-x = 1%
+offset-y = 1%
+fix-center = true
+bottom = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3pt
+
+border-size = 5pt
+border-color = #00000000
+
+padding-left = 2
+padding-right = 2
+
+module-margin = 2
+
+separator = |
+separator-foreground = ${colors.disabled}
+
+font-0 = "FontAwesome:size=12;2"
+font-1 = "Fura Mono Nerd Font Mono:size=18;4"
+#font-2 = "JetBrainsMono Nerd Font Mono:size=12;4
+
+;modules-left = upt memory cpu load fedora-updates  
+modules-left = upt memory cpu load  
+;modules-center = xworkspaces
+modules-center = i3
+modules-right = filesystem pulseaudio wlan eth battery backlight fan temperature date powermenu 
+
+tray-detached = true
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 2
+tray-maxsize = 20
+tray-scale = 1.0
+tray-position = right
+tray-background = ${colors.background}
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+enable-ipc = true
+
+;tray-position = right
+
+; wm-restack = generic
+; wm-restack = bspw
+; wm-restack = i3
+
+; override-redirect = true
+;=====================================================================
+[module/i3]
+;https://github.com/jaagr/polybar/wiki/Module:-i3
+type = internal/i3
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = true
+
+; This will split the workspace name on ':'
+; Default: false
+strip-wsnumbers = false
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+; Default: false
+index-sort = false
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = true
+
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = true
+
+; Set the scroll cycle direction
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces
+; containing 'code' in the label
+; Default: false
+fuzzy-match = false
+
+;extra icons to choose from
+;http://fontawesome.io/cheatsheet/
+;       v     
+
+; ws-icon-0 = 1;
+; ws-icon-1 = 2;
+; ws-icon-2 = 3;
+; ws-icon-3 = 4;
+; ws-icon-4 = 5;
+; ws-icon-5 = 6;
+; ws-icon-6 = 7;
+; ws-icon-7 = 8;
+; ws-icon-8 = 9;
+; ws-icon-9 = 10;
+; ws-icon-default = " "
+
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-foreground = ${colors.primary}
+label-mode-background = ${colors.black}
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+; focused = Active workspace on focused monitor
+label-focused = %icon% %name%
+label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.foreground}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 2
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon% %name%
+label-unfocused-padding = 2
+label-unfocused-background = ${colors.background}
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-underline =
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon% %name%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = 2
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+; urgent = Workspace with urgency hint set
+label-urgent = %icon% %name%
+label-urgent-background = ${self.label-focused-background}
+label-urgent-foreground = #db104e
+label-urgent-padding = 2
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+;=====================================================================
+[module/xworkspaces]
+type = internal/xworkspaces
+
+label-active = %name%
+label-active-background = ${colors.background-alt}
+label-active-foreground = ${colors.orange}
+label-active-underline= ${colors.primary}
+label-active-padding = 4
+
+label-occupied = %name%
+label-occupied-background = ${colors.background-alt}
+label-occupied-foreground = ${colors.blue}
+label-occupied-padding = 4
+
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 4
+
+label-empty = %name%
+label-empty-foreground = ${colors.disabled}
+label-empty-padding = 4
+
+;=====================================================================
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:60:...%
+label-foreground = ${colors.blue}
+
+;=====================================================================
+[module/filesystem]
+; Available tokens:
+;   %mountpoint%
+;   %type%
+;   %fsname%
+;   %percentage_free%
+;   %percentage_used%
+;   %total%
+;   %free%
+;   %used%
+; Default: %mountpoint% %percentage_free%%
+type = internal/fs
+interval = 25
+mount-0 = /home 
+;label-mounted = %{F#F0C674}%mountpoint%%{F-} %percentage_used%%
+label-mounted = %{F#F0C674} %{F-} %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.disabled}
+
+;=====================================================================
+[module/pulseaudio]
+type = internal/pulseaudio
+format-volume-prefix = " "
+format-volume-prefix-foreground = ${colors.primary}
+format-volume = <label-volume>
+label-volume = %percentage%%
+label-muted = ""
+label-muted-foreground = ${colors.disabled}
+
+;=====================================================================
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "󰍛 "
+format-prefix-foreground = ${colors.primary}
+label = %percentage_used:2%%
+
+;=====================================================================
+[module/cpu]
+type = internal/cpu
+interval = 2
+;format-prefix = " "
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+label = %percentage:2%%
+
+[network-base]
+type = internal/network
+interval = 5
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+label-disconnected = %{F#F0C674}%ifname%%{F#707880} disconnected
+
+;=====================================================================
+;[module/eth]
+;inherit = network-base
+;interface-type = wired
+;;label-connected = %{F#F0C674}%ifname%%{F-} %local_ip%
+;label-connected = %{F#F0C674}󰈀 %{F-} %local_ip%
+;label-disconnected ="" 
+
+;=====================================================================
+[module/eth]
+;https://github.com/jaagr/polybar/wiki/Module:-network
+type = internal/network
+;interface = enp7s0f4u1c2
+inherit = network-base
+interface-type = wired
+interval = 3.0
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+; Default: %ifname% %local_ip%
+label-connected =  %local_ip%
+label-disconnected =
+
+format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.background}
+;format-connected-underline = ${colors.primary}
+format-connected-prefix = "󰈀 "
+format-connected-prefix-foreground = ${colors.primary}
+format-connected-prefix-background = ${colors.background}
+
+format-disconnected = <label-disconnected>
+format-disconnected-underline = ${colors.alert}
+label-disconnected-foreground = ${colors.foreground}
+
+;=====================================================================
+[module/date]
+type = internal/date
+interval = 1
+
+date =
+date-alt = " %d-%m-%Y"
+
+time = %r
+time-alt = %r
+
+format-prefix = ""
+format-prefix-foreground = ${colors.green}
+format-foreground = ${colors.purple}
+;format-underline = #0a6cf5
+label = %date% %time%
+
+;=====================================================================
+;[module/battery]
+;type = custom/script
+;interval = 5
+;exec = bash ~/.scripts/battery_info_new.sh
+
+;=====================================================================
+[module/battery]
+type = internal/battery
+; Default: 100
+full-at = 99
+
+; format-low once this charge percentage is reached
+; Default: 10
+; New in version 3.6.0
+low-at = 15
+battery = BAT0
+adapter = ADP1
+poll-interval = 5
+; Available tags:
+;   <label-charging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-charging>
+format-charging = <label-charging>  <animation-charging> 
+format-discharging = <label-discharging> | <ramp-capacity> 
+; Available tags:
+;   <label-full> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;format-full = <ramp-capacity> <label-full>
+
+; Format used when battery level drops to low-at
+format-low = <label-low> <animation-low>
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+;   %time%
+;   %consumption% (shows current charge rate in watts)
+label-charging =    %percentage%% | %time%
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+;   %time%
+;   %consumption% (shows current discharge rate in watts)
+label-discharging = ﮤ  %percentage%% | %time% 
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+label-full =  
+
+; Available tokens:
+;   %percentage% (default) - is set to 100 if full-at is reached
+;   %percentage_raw%
+;   %time%
+;   %consumption% (shows current discharge rate in watts)
+; New in version 3.6.0
+label-low = BATTERY LOW
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+; Only applies if <bar-capacity> is used
+bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+; Framerate in milliseconds
+animation-discharging-framerate = 500
+
+; Only applies if <animation-low> is used
+; New in version 3.6.0
+animation-low-0 = !
+animation-low-1 =
+animation-low-framerate = 200
+
+;=====================================================================
+[module/fan]
+type = custom/script
+interval = 5
+exec = bash ~/.scripts/i3fan.sh
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-prefix = "󰈐 "
+format-prefix-foreground =${colors.primary}
+
+
+;=====================================================================
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 80
+format-prefix = " "
+format-underline = ${colors.primary}
+format-warn-underline = ${self.format-underline}
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+;=====================================================================
+[module/upt]
+type = custom/script
+interval = 120
+;format-prefix = " "
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+exec = bash ~/.scripts/uptime.sh
+
+;=====================================================================
+[module/load]
+type = custom/script
+interval = 5
+exec = bash ~/.scripts/i3cpu.sh 
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-prefix = "  "
+format-prefix-foreground =${colors.primary}
+;format-underline = #FFBB00
+
+;=====================================================================
+[module/powermenu]
+type = custom/text 
+content =" " 
+content-padding = 1
+click-left = bash ~/.config/rofi/bin/powermenu 
+content-foreground = ${colors.cyan}
+
+;=====================================================================
+;[module/wlan]
+;type = internal/network
+;interface = wlp3s0
+;interval = 3.0
+;format-connected =  <label-connected>
+;;label-connected = "󰤪  "
+;label-connected = "󱚸"
+;label-connected-foreground = #A3BE8C
+
+;=====================================================================
+[module/wlan]
+;https://github.com/jaagr/polybar/wiki/Module:-network
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+label-connected = %essid%
+
+;format-connected = <label-connected>
+format-connected = <ramp-signal> <label-connected>
+format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.background}
+format-connected-prefix = "  "
+format-connected-prefix-foreground =${colors.primary}
+format-connected-prefix-background = ${colors.background}
+format-connected-underline = ${colors.primary}
+ 
+ 
+
+;label-disconnected = %ifname% disconnected
+;label-disconnected = 󰖪
+label-disconnected = 
+label-disconnected-foreground = ${colors.alert}
+label-disconnected-background = ${colors.background}
+
+format-disconnected = <label-disconnected>
+format-disconnected-foreground = ${colors.alert}
+format-disconnected-background = ${colors.background}
+;format-disconnected-prefix = "  "
+format-disconnected-prefix = " " 
+format-disconnected-prefix-foreground = ${colors.alert}
+format-disconnected-prefix-background = ${colors.background}
+format-disconnected-underline =${colors.alert}
+
+ramp-signal-0 = ▁
+ramp-signal-1 = ▂
+ramp-signal-2 = ▃
+ramp-signal-3 = ▄
+ramp-signal-4 = ▅
+ramp-signal-5 = ▆
+ramp-signal-6 = ▇
+ramp-signal-7 = █
+ramp-signal-foreground = #F0C674
+
+;=====================================================================
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+
+;=====================================================================
+[module/fedora-updates]
+type = custom/script
+exec = /home/raviroy/.scripts/check_update.sh
+interval = 1000
+label = %output% updates
+format-prefix = "  "
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-prefix-foreground =${colors.primary}
+
+
+
