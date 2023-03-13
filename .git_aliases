@@ -1,0 +1,9 @@
+alias g='git'
+alias gl='git pull'
+alias gp='git push'
+alias gcm='git checkout main'
+alias gc='git checkout'
+alias gs='git status'
+alias ga='git add'
+alias gm='git merge'
+
