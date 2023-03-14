@@ -1,5 +1,4 @@
 
-
 #Set mod key to Windows key
 set $mod Mod4
 
@@ -137,11 +136,6 @@ bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+s move container to workspace $workspace8
 bindsym $mod+Shift+z move container to workspace $workspace9
 bindsym $mod+Shift+a move container to workspace $workspace0
-
-
-
-
-
 
 set $workspace20 " "
 # switch to workspace 11-20 (MOD KEY : ALT)
@@ -296,10 +290,7 @@ bindsym Print exec flameshot gui
 ##bindsym $mod+Shift+z exec prompt "Are you sure you would like to reboot?" "sudo reboot"
 
 # Autotiling feature
-#exec_always --no-startup-id autotiling
-#exec_always autotiling
-#exec --no-startup-id ~/.scripts/alternating_layouts.py &
-
+exec_always --no-startup-id ~/.local/bin/autotiling
 
 #Focus to the window with urgent flag(Red blinking)
 #bindsym $mod+x [urgent=latest] focus
@@ -311,7 +302,7 @@ bindsym Print exec flameshot gui
 for_window [class="^.*"] border pixel 0
 
 gaps inner 5
-#gaps outer 5
+gaps outer 2
 
 # Only enable gaps on a workspace when there is at least one container
 smart_gaps on
@@ -435,8 +426,8 @@ bindsym $mod+p exec --no-startup-id ~/.config/rofi/bin/powermenu
 
 #bindsym Mod1+c mode "Phone-Connect: (c)onnect,(d)isconnect"
 
-#bindsym $mod2+Tab exec --no-startup-id "python3 ~/.config/i3/i3ipc_find_scratchpad.py"
-#bindsym Mod1+Shift+minus exec "python3 ~/.config/i3/i3ipc_hide_all_scratchpad_window.py"
+bindsym $mod2+Tab exec --no-startup-id "python3 ~/.config/i3/i3ipc_find_scratchpad.py"
+bindsym Mod1+Shift+minus exec "python3 ~/.config/i3/i3ipc_hide_all_scratchpad_window.py"
 
 bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name for this workspace: '
 
