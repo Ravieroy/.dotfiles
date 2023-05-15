@@ -1,5 +1,5 @@
 :set number
-:set relativenumber
+" :set relativenumber
 :set autoindent
 :set tabstop=4
 :set shiftwidth=4
@@ -55,10 +55,10 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 "Harpoon
 nnoremap <leader>a <cmd>:lua require("harpoon.mark").add_file()<cr>
 nnoremap <C-e> <cmd>:lua require("harpoon.ui").toggle_quick_menu()<cr>
-nnoremap <C-h> <cmd>:lua require("harpoon.ui").nav_file(1)<cr>
-nnoremap <C-t> <cmd>:lua require("harpoon.ui").nav_file(2)<cr>
-nnoremap <C-n> <cmd>:lua require("harpoon.ui").nav_file(3)<cr>
-nnoremap <C-s> <cmd>:lua require("harpoon.ui").nav_file(4)<cr>
+nnoremap <C-1> <cmd>:lua require("harpoon.ui").nav_file(1)<cr>
+nnoremap <C-2> <cmd>:lua require("harpoon.ui").nav_file(2)<cr>
+nnoremap <C-3> <cmd>:lua require("harpoon.ui").nav_file(3)<cr>
+nnoremap <C-4> <cmd>:lua require("harpoon.ui").nav_file(4)<cr>
 
 "UndoTree
 nnoremap <F5> :UndotreeToggle<CR>

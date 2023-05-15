@@ -107,6 +107,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.scripts:$PATH"
 export PATH="$HOME/.fzf-scripts:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 
 ##nnn
@@ -142,11 +143,17 @@ if [ -e $HOME/.sh_functions ]; then
     source $HOME/.sh_functions
 fi
 
+#My login aliases (private)
+if [ -e $HOME/.login_aliases ]; then
+    source $HOME/.login_aliases
+fi
+
+
 setxkbmap -option caps:swapescape
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/raviroy/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/raviroy/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
@@ -170,4 +177,5 @@ zmodload zsh/zprof
 
 
 
-
+source /etc/profile.d/modules.sh
+module load mpi/openmpi-x86_64

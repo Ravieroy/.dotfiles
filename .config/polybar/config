@@ -79,7 +79,7 @@ font-1 = "Fura Mono Nerd Font Mono:size=18;4"
 #font-2 = "JetBrainsMono Nerd Font Mono:size=12;4
 
 modules-left = upt memory cpu load fedora-updates  
-;modules-center = xworkspaces
+; modules-center = xworkspaces
 modules-center = i3
 modules-right = filesystem pulseaudio wlan eth battery backlight fan temperature date powermenu 
 
@@ -571,7 +571,7 @@ pseudo-transparency = true
 type = custom/script
 exec = /home/raviroy/.scripts/check_update.sh
 interval = 1000
-label = %output% updates
+label = %output% 
 format-prefix = "  "
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}

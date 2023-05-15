@@ -111,6 +111,7 @@ bindsym $mod2+Shift+d exec --no-startup-id "pcmanfm"
 set $workspace0 ""
 set $workspace9 " " 
 set $workspace8 " "
+set $workspace11 ""
 #
 # switch to workspace 1-10 (MOD KEy : WIN)
 bindsym $mod+1 workspace number 1
@@ -139,7 +140,7 @@ bindsym $mod+Shift+a move container to workspace $workspace0
 
 set $workspace20 " "
 # switch to workspace 11-20 (MOD KEY : ALT)
-bindsym $mod2+1 workspace number 11
+bindsym $mod2+1 workspace $workspace11
 bindsym $mod2+2 workspace number 12
 bindsym $mod2+3 workspace number 13
 bindsym $mod2+4 workspace number 14
@@ -152,7 +153,8 @@ bindsym $mod2+0 workspace $workspace20
 bindsym $mod2+o workspace $workspace20 
 
 # move focused container to workspace
-bindsym $mod2+Shift+1 move container to workspace number 11
+bindsym $mod2+Shift+1 move container to workspace $workspace11
+bindsym $mod2+Shift+t move container to workspace $workspace11
 bindsym $mod2+Shift+2 move container to workspace number 12
 bindsym $mod2+Shift+3 move container to workspace number 13
 bindsym $mod2+Shift+4 move container to workspace number 14
@@ -169,6 +171,7 @@ bindsym $mod2+Shift+o move container to workspace $workspace20
 assign [class="firefox"] $workspace9
 assign [class="dolphin"] $workspace8
 assign [class="okular"] $workspace20
+assign [class="Trello"] $workspace11
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -454,3 +457,5 @@ bindsym $mod+b exec --no-startup-id "/home/raviroy/apps/palemoon/palemoon"
 exec_always --no-startup-id xss-lock i3lock-fancy
 exec_always --no-startup-id setxkbmap -option caps:swapescape
 
+bindsym $mod2+s exec --no-startup-id scid
+bindsym $mod2+t exec --no-startup-id /home/raviroy/apps/trelloApp/Trello
